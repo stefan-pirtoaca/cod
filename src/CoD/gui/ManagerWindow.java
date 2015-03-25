@@ -815,6 +815,11 @@ public class ManagerWindow extends javax.swing.JFrame {
         accountTypeBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Staff", "Manager" }));
 
         accountAddBtn.setText("Add account");
+        accountAddBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accountAddBtnActionPerformed(evt);
+            }
+        });
 
         accountUpdateBtn.setText("Update account");
 
@@ -952,8 +957,12 @@ public class ManagerWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_reportGenerateBtnActionPerformed
 
     private void deleteItemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteItemBtnActionPerformed
-        JOptionPane.showConfirmDialog(null, "<html>Are you sure you want to delete this item?<br>The action is irreversible.",
-                "Deletion confirmation", JOptionPane.YES_NO_OPTION);
+        JOptionPane.showConfirmDialog(
+                this,
+                "<html>Are you sure you want to delete this item?"
+                        + "<br>The action is irreversible.",
+                "Deletion confirmation",
+                JOptionPane.YES_NO_OPTION);
     }//GEN-LAST:event_deleteItemBtnActionPerformed
 
     private void emailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFieldActionPerformed
@@ -961,17 +970,50 @@ public class ManagerWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_emailFieldActionPerformed
 
     private void accountDeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountDeleteBtnActionPerformed
-        JOptionPane.showConfirmDialog(null, "<html>Are you sure you want to delete this account?<br>The action is irreversible.",
-                "Deletion confirmation", JOptionPane.YES_NO_OPTION);
+        JOptionPane.showConfirmDialog(
+                this,
+                "<html>Are you sure you want to delete this account?"
+                        + "<br>The action is irreversible.",
+                "Deletion confirmation",
+                JOptionPane.YES_NO_OPTION);
     }//GEN-LAST:event_accountDeleteBtnActionPerformed
 
     private void refundRecordBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refundRecordBtnActionPerformed
-        JOptionPane.showMessageDialog(null, "Refund successfully recorded.", "Refund recorded", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(
+                this,
+                "Refund successfully recorded.",
+                "Refund recorded",
+                JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_refundRecordBtnActionPerformed
 
     private void isAvailableBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isAvailableBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_isAvailableBoxActionPerformed
+
+    private void accountAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountAddBtnActionPerformed
+        int userID;
+        userID = conn.register(
+                "Customer",
+                nameField.getText(),
+                surnameField.getText(),
+                emailField.getText(),
+                User.encryptPassword("employee1".getBytes()),
+                "");
+        
+        if (userID != -1)
+            javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "<html>The account has been successfully created<br>"
+                    + "and is ready to be used.",
+                "Account creation successful",
+                javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        else javax.swing.JOptionPane.showMessageDialog(
+                this,
+                "<html>The account has not been created successfully.<br>"
+                    + "Please try again.",
+                "Account creation unsuccessful",
+                javax.swing.JOptionPane.ERROR_MESSAGE);
+    }//GEN-LAST:event_accountAddBtnActionPerformed
 
     /**
      * @param args the command line arguments

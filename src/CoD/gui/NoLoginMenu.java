@@ -771,33 +771,32 @@ public class NoLoginMenu extends javax.swing.JFrame {
                 conn);
         if(user.login())
         {
-            String role = user.getType();
-            switch (role)
+            String type = user.getType();
+            switch (type)
             {
-                case "customer" : 
+                case "Customer" : 
                 {
                     new ClientWindow(conn, user).main(new String[0]);
                     loginDialog.dispose();
                     this.dispose();
                     break;
                 }
-                case "staff" :
+                case "Staff" :
                 {
                     new StaffWindow(conn, user).main(new String[0]);
                     loginDialog.dispose();
                     this.dispose();
                     break;
                 }
-                case "manager" :
+                case "Manager" :
                 {
                     new ManagerWindow(conn, user).main(new String[0]);
                     loginDialog.dispose();
                     this.dispose();
                     break;
                 }
-                case "owner" :
+                case "Owner" :
                 {
-                    new ClientWindow(conn, user).main(new String[0]);
                     new StaffWindow(conn, user).main(new String[0]);
                     new ManagerWindow(conn, user).main(new String[0]);
                     new OwnerWindow(conn).main(new String [0]);
@@ -823,6 +822,7 @@ public class NoLoginMenu extends javax.swing.JFrame {
         
         int userID;
         userID = conn.register(
+                "Customer",
                 registerNameField.getText(),
                 registerSurnameField.getText(),
                 registerEmailField.getText(),

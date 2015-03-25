@@ -1362,7 +1362,10 @@ public class ClientWindow extends javax.swing.JFrame
     }//GEN-LAST:event_paymentTotalCostFieldActionPerformed
 
     private void orderBtnBankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderBtnBankActionPerformed
-        JOptionPane.showMessageDialog(orderDialog, "Your order has been successfully placed.", "Order confirmation",
+        JOptionPane.showMessageDialog(
+                orderDialog,
+                "Your order has been successfully placed.",
+                "Order confirmation",
                 JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_orderBtnBankActionPerformed
 

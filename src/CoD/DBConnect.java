@@ -24,24 +24,28 @@ public class DBConnect
     private static final    String registerCustomerSQL =
             "INSERT INTO Users (type, name, surname, email, password)"
             + "VALUES ("
-            + "'customer',"
+            + "?,"
             + "?,"
             + "?,"
             + "?,"
             + "?)";
     private static final    String customerIntegritySQL = 
             "INSERT INTO Customers (customerID) VALUES(?)";
+    private static final    String employeesIntegritySQL = 
+            "INSERT INTO Employees (employeeID) VALUES(?)";
    
-    private                 PreparedStatement registerCustomerPS;
+    private                 PreparedStatement registerPS;
     private                 PreparedStatement customerIntegrityPS;
+    private                 PreparedStatement employeeIntegrityPS;
 
     public DBConnect()
     {
         try
         {
             conn = DriverManager.getConnection(host, uName, pass);
-            registerCustomerPS  = conn.prepareStatement(registerCustomerSQL);
+            registerPS  = conn.prepareStatement(registerCustomerSQL);
             customerIntegrityPS = conn.prepareStatement(customerIntegritySQL);
+            employeeIntegrityPS = conn.prepareStatement(employeesIntegritySQL);
         }
         catch (SQLException ex)
         { 
@@ -51,6 +55,14 @@ public class DBConnect
         }
     }
     
+    /**
+     * Read from the database.
+     * Used for SELECT.
+     * 
+     * @param query SQL query to be sent to the DB (String)
+     * @return ResultSet containing resulting rows
+     * @throws SQLException
+     */
     public ResultSet read(String query) throws SQLException
     {
         Statement stmt = conn.createStatement(
@@ -59,6 +71,13 @@ public class DBConnect
         return stmt.executeQuery(query);
     }
     
+    /**
+     * Write a query to the database.
+     * Used for UPDATE, INSERT, DELETE.
+     * 
+     * @param query SQL query to be sent to the DB (String)
+     * @return true if execution was successful, false otherwise
+     */
     public boolean write(String query)
     {
         boolean ok = true;
@@ -71,6 +90,12 @@ public class DBConnect
         return ok;
     }
     
+    /**
+     * Logs a user in.
+     * 
+     * @param user
+     * @return true if login successful, false otherwise
+     */
     public boolean login(User user)
     {
         return write("UPDATE Users "
@@ -78,6 +103,12 @@ public class DBConnect
             + "WHERE userID = " + user.getUserID());
     }
     
+    /**
+     * Logs a user out.
+     * 
+     * @param user
+     * @return true if logout successful, false otherwise
+     */
     public boolean logout(User user)
     {
         return write("UPDATE Users "
@@ -85,15 +116,28 @@ public class DBConnect
             + "WHERE userID = " + user.getUserID());
     }
     
-    public int register(String n, String sn, String e, String pw, String p)
+    /**
+     * Registers a user provided the details and returns a userID, or -1,
+     * if registration failed.
+     * 
+     * @param t user type
+     * @param n user name
+     * @param sn user surname
+     * @param e user email
+     * @param pw user password (encrypted!)
+     * @param p user phone (optional, but must be empty string, not null)
+     * @return userID (int) or -1
+     */
+    public int register(String t, String n, String sn, String e, String pw, String p)
     {
         int userID = -1;
         try {
-            registerCustomerPS.setString(1, n);
-            registerCustomerPS.setString(2, sn);
-            registerCustomerPS.setString(3, e);
-            registerCustomerPS.setString(4, pw);
-            registerCustomerPS.executeUpdate();
+            registerPS.setString(1, t);
+            registerPS.setString(2, n);
+            registerPS.setString(3, sn);
+            registerPS.setString(4, e);
+            registerPS.setString(5, pw);
+            registerPS.executeUpdate();
             
             ResultSet rs = read("SELECT userID FROM Users "
                     + "WHERE email = '" + e + "'");
@@ -102,12 +146,21 @@ public class DBConnect
             customerIntegrityPS.setInt(1, userID);
             customerIntegrityPS.executeUpdate();
             
-            if (!p.isEmpty())
+            if (t.equals("Manager") || t.equals("Staff"))
             {
-                String phone = p.equals("") ? "NULL" : p;
-                write("UPDATE Customers "
+                employeeIntegrityPS.setInt(1, userID);
+                employeeIntegrityPS.executeUpdate();
+            } else 
+            {
+                customerIntegrityPS.setInt(1, userID);
+                customerIntegrityPS.executeUpdate();
+                if (!p.isEmpty())
+                {
+                    String phone = p.equals("") ? "NULL" : p;
+                    write("UPDATE Customers "
                         + "SET mobile_number= '" + phone
                         + "' WHERE customerID = " + userID);
+                }
             }
         } catch (SQLException ex)
         {

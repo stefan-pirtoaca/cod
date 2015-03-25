@@ -63,29 +63,24 @@ public class User
     /**
      * Logs the user out.
      */
-    public void logout()
-    {
-        conn.logout(this);
-    }
+    public void logout() { conn.logout(this); }
     
     /**
      *
      * @return user's ID
      */
-    public int getUserID()
-    {
-        return userID;
-    }
+    public int getUserID() { return userID; }
     
     /**
      *
      * @return user's type
      */
-    public String getType()
-    {
-        return type;
-    }
+    public String getType() { return type; }
     
+    /**
+     *
+     * @return
+     */
     public String getName() { return name; }
     
     /**
@@ -127,7 +122,7 @@ public class User
     /**
      *
      * @param password
-     * @return
+     * @return encrypted password, as a String
      */
     public static String encryptPassword(byte[] password) 
     {
@@ -156,6 +151,7 @@ public class User
             result.first();
             userID = result.getInt("userID");
             type = result.getString("type");
+            name = result.getString("name");
             storedEmail = result.getString("email");
             storedPass = result.getString("password");
         } catch (SQLException ex) {}
