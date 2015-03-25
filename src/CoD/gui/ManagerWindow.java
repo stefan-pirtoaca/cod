@@ -993,7 +993,7 @@ public class ManagerWindow extends javax.swing.JFrame {
     private void accountAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountAddBtnActionPerformed
         int userID;
         userID = conn.register(
-                "Customer",
+                accountTypeBox.getSelectedItem().toString(),
                 nameField.getText(),
                 surnameField.getText(),
                 emailField.getText(),

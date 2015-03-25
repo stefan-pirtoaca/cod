@@ -35,12 +35,9 @@ public class WindowAdapter implements WindowListener
                 "Log out confirmation",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE);
-        if (logoutOpt == 1)
+        if (logoutOpt == 0)
         {
             user.logout();
-            
-            
-            
             System.exit(0);
         }
     }

@@ -830,12 +830,15 @@ public class NoLoginMenu extends javax.swing.JFrame {
                 mobileNo);
         
         if (userID != -1)
+        {
             javax.swing.JOptionPane.showMessageDialog(
                 registerDialog,
                 "<html>Your account has been successfully created.<br>"
                     + "You can now log in with your account.",
                 "Registration complete",
                 javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            registerDialog.dispose();
+        }
         else javax.swing.JOptionPane.showMessageDialog(
                 registerDialog,
                 "<html>Your registration did not complete successfully.<br>"

@@ -155,7 +155,8 @@ public class ClientWindow extends javax.swing.JFrame
         PP8 = new javax.swing.JLabel();
         basketSP = new javax.swing.JScrollPane();
         basketTable = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        basketLbl = new javax.swing.JLabel();
+        jRadioButton1 = new javax.swing.JRadioButton();
         orderHistoryTab = new javax.swing.JPanel();
         orderHistoryScrollPanel = new javax.swing.JScrollPane();
         orderHistoryTable = new javax.swing.JTable();
@@ -498,13 +499,13 @@ public class ClientWindow extends javax.swing.JFrame
         setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(590, 532));
         setName("MainFrame"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(590, 532));
+        setPreferredSize(new java.awt.Dimension(600, 532));
 
         clientTabs.setFocusCycleRoot(true);
         clientTabs.setFont(clientTabs.getFont().deriveFont(clientTabs.getFont().getSize()+1f));
         clientTabs.setName("TabPanel"); // NOI18N
         clientTabs.setOpaque(true);
-        clientTabs.setPreferredSize(new java.awt.Dimension(570, 500));
+        clientTabs.setPreferredSize(new java.awt.Dimension(600, 500));
 
         homeTab.setName("Home"); // NOI18N
 
@@ -546,7 +547,7 @@ public class ClientWindow extends javax.swing.JFrame
         homeTabLayout.setHorizontalGroup(
             homeTabLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, homeTabLayout.createSequentialGroup()
-                .addContainerGap(158, Short.MAX_VALUE)
+                .addContainerGap(168, Short.MAX_VALUE)
                 .add(homeTabLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(homeTabLayout.createSequentialGroup()
                         .add(homeTabLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
@@ -914,43 +915,42 @@ public class ClientWindow extends javax.swing.JFrame
             basketTable.getColumnModel().getColumn(2).setPreferredWidth(40);
         }
 
-        jLabel1.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
-        jLabel1.setText("Basket");
+        basketLbl.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
+        basketLbl.setText("Basket");
+
+        jRadioButton1.setText("Daily Special");
 
         org.jdesktop.layout.GroupLayout menuTabLayout = new org.jdesktop.layout.GroupLayout(menuTab);
         menuTab.setLayout(menuTabLayout);
         menuTabLayout.setHorizontalGroup(
             menuTabLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(menuTabLayout.createSequentialGroup()
-                .add(menuTabLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                .add(menuTabLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(menuTabLayout.createSequentialGroup()
-                        .add(breakfastSelect)
+                        .add(orderTotalCostLbl)
+                        .add(0, 0, 0)
+                        .add(orderTotalCostField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(18, 18, 18)
-                        .add(lunchSelect)
-                        .add(18, 18, 18)
-                        .add(dinnerSelect)
-                        .add(18, 18, 18)
-                        .add(drinksSelect))
-                    .add(menuTabLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(menuPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .add(menuTabLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(menuTabLayout.createSequentialGroup()
-                        .add(18, 18, 18)
-                        .add(basketSP, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .add(menuTabLayout.createSequentialGroup()
-                        .add(114, 114, 114)
-                        .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 50, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(125, Short.MAX_VALUE))))
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, menuTabLayout.createSequentialGroup()
-                .add(0, 0, Short.MAX_VALUE)
-                .add(orderTotalCostLbl)
-                .add(0, 0, 0)
-                .add(orderTotalCostField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(18, 18, 18)
-                .add(orderBtn)
-                .add(26, 26, 26))
+                        .add(orderBtn))
+                    .add(menuTabLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                        .add(menuTabLayout.createSequentialGroup()
+                            .add(breakfastSelect)
+                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                            .add(lunchSelect)
+                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                            .add(dinnerSelect)
+                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                            .add(drinksSelect)
+                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                            .add(jRadioButton1)
+                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .add(basketLbl, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 50, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(menuTabLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .add(menuPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 295, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(18, 18, 18)
+                            .add(basketSP, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 275, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         menuTabLayout.setVerticalGroup(
             menuTabLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -961,17 +961,18 @@ public class ClientWindow extends javax.swing.JFrame
                     .add(lunchSelect)
                     .add(dinnerSelect)
                     .add(drinksSelect)
-                    .add(jLabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .add(basketLbl, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(jRadioButton1))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(menuTabLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(basketSP, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .add(menuPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(menuTabLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(orderBtn)
                     .add(orderTotalCostField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(orderTotalCostLbl))
-                .addContainerGap())
+                .add(12, 12, 12))
         );
 
         clientTabs.addTab("Menu", menuTab);
@@ -1028,7 +1029,7 @@ public class ClientWindow extends javax.swing.JFrame
             orderHistoryTabLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(orderHistoryTabLayout.createSequentialGroup()
                 .addContainerGap()
-                .add(orderHistoryScrollPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
+                .add(orderHistoryScrollPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
                 .addContainerGap())
             .add(org.jdesktop.layout.GroupLayout.TRAILING, orderHistoryTabLayout.createSequentialGroup()
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1152,7 +1153,7 @@ public class ClientWindow extends javax.swing.JFrame
         accountTabLayout.setHorizontalGroup(
             accountTabLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, accountTabLayout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
+                .addContainerGap(62, Short.MAX_VALUE)
                 .add(accountTabLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(accountTabLayout.createSequentialGroup()
                         .add(284, 284, 284)
@@ -1227,7 +1228,7 @@ public class ClientWindow extends javax.swing.JFrame
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(clientTabs, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+            .add(clientTabs, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -1428,7 +1429,7 @@ public class ClientWindow extends javax.swing.JFrame
         if (logoutOpt == 0)
         {
             user.logout();
-            dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+            System.exit(0);
         } else System.out.println("no?");
     }//GEN-LAST:event_homeLogoutBtnActionPerformed
 
@@ -1526,6 +1527,7 @@ public class ClientWindow extends javax.swing.JFrame
     private javax.swing.JTextField bankSortCodeF2;
     private javax.swing.JTextField bankSortCodeF3;
     private javax.swing.JLabel bankSortCodeLbl;
+    private javax.swing.JLabel basketLbl;
     private javax.swing.JScrollPane basketSP;
     private javax.swing.JTable basketTable;
     private javax.swing.JPanel breakfastMenuPanel;
@@ -1555,7 +1557,7 @@ public class ClientWindow extends javax.swing.JFrame
     private javax.swing.JTextField homeVIPStatusField;
     private javax.swing.JLabel homeVIPStatusLbl;
     private javax.swing.JLabel homeWelcomeLbl;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton lunchSelect;
     private javax.swing.JPanel menuPanel;
     private javax.swing.ButtonGroup menuSelector;

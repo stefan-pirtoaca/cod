@@ -32,7 +32,7 @@ public class CateringOnDemand
         {
             md = MessageDigest.getInstance("SHA-1");
             md.reset();
-            md.update("password1".getBytes("UTF-8"));
+            md.update("uni123".getBytes("UTF-8"));
             byte[] raw = md.digest();
             System.out.println(new String((new BASE64Encoder()).encode(raw)));
         } catch(NoSuchAlgorithmException | UnsupportedEncodingException ex) {}

@@ -42,6 +42,7 @@ public class User
     }
 
     /**
+     * Logs the user in.
      * 
      * @return true if password is correct
      */
@@ -146,7 +147,7 @@ public class User
     {
         try
         {
-            ResultSet result = conn.read("SELECT userID, type, email, password "
+            ResultSet result = conn.read("SELECT userID, type, name, email, password "
                     + "FROM Users WHERE email= '" + email + "'");
             result.first();
             userID = result.getInt("userID");
